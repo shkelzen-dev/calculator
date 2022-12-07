@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="script.js" defer></script>
     <title>Calculator</title>
 </head>
@@ -14,12 +15,16 @@
         <div id="scr1"></div>
         <div id="scr2"></div>
     </div>
+    <button id="backspace"  onclick="backspace()"> <i class="material-icons"
+         style="font-size:48px;color:red">backspace</i></button>
     <div id="calculator">
+        
         <div class="main">
+           
         <div class="line" id="first-line">
-            <button class="act" type="button" onclick="clearScreen()">C</button>
-            <button class="act" value="/" type="button" onclick="act('/')">/</button>
-            <button class="act" value="*" type="button" onclick="act('*')">*</button>
+            <button class="act" type="button" id="cls" onclick="clearScreen()">C</button>
+            <button class="act" id="divide" value="/" type="button" onclick="act('/')">/</button>
+            <button class="act" id="multiply" value="*" type="button" onclick="act('*')">*</button>
             
             </div>
         <div class="line" id="second-line">
@@ -46,6 +51,7 @@
         </div>    
     </div>
     <div class="edge">
+        
         <button class="act" id="minus" value="-" type="button" onclick="act('-')">-</button>
         <button class="act" id="plus" value="+" type="button" onclick="act('+')">+</button>
         <button class="act" id="submit" type="button" onclick="submit()">=</button>
