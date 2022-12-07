@@ -27,19 +27,19 @@ function divide(a=1,b=1){
 
 function operate(a,o,b){
     if(o === '+'){
-         s1 = add(a,b);
-        nr1 = s1;
+        s1 = add(a,b);
+        nr1 = Math.round(s1*100000)/100000;
         
     }else if(o === '-'){
          s1 = subtract(a,b);
-         nr1 = s1;
+         nr1 = nr1 = Math.round(s1*100000)/100000;
     }else if(o == '*'){
          s1 = multiply(a,b);
-        nr1 = s1;
+        nr1 = nr1 = Math.round(s1*100000)/100000;
     }
     else if(o == '/'){
         s1 = divide(a,b);
-        nr1 = s1;
+        nr1 = nr1 = Math.round(s1*100000)/100000;
     }else{
         nr1 = nr2 ;
     }
@@ -52,23 +52,16 @@ scr2.style.color = 'black';
 
 //saves input in variable 
 function show(value){
-    if(scr2.textContent == 0){
-        scr2.textContent = '';
-        scr2.textContent = value;
-        nr2 = scr2.textContent ;
-        nr2 = parseFloat(nr2);
-        operate(nr1,o,nr2);//does calculation
-        scr1.textContent = Math.round(s1*100000)/100000;//shows rounded result in top screen
-        o = '';
+    if(value === '0' && scr2.textContent === '0'){
+        scr2.textContent = '0';
+    }else if(value == '0' && scr2.textContent !== '0'){
+        scr2.textContent += '0' ;
+    }else if(value == '.'){
+        scr2.textContent += value ; 
     }else{
-        scr2.textContent += value ;
-        nr2 = scr2.textContent ;
-        nr2 = parseFloat(nr2);
-        operate(nr1,o,nr2);
-        o = '';
-        scr1.textContent = Math.round(s1*100000)/100000 ;
+    scr2.textContent += value ;
+    scr2.textContent = parseFloat(scr2.textContent);
     }
-    
 };
 
 
@@ -89,15 +82,25 @@ clearScreen();
 
 //stores first number and operator in variables
 function act(value){
+    nr2 = scr2.textContent ;    
+    nr2 = parseFloat(nr2);
+    operate(nr1,o,nr2);
+    o = value ;
     scr1.textContent = nr1 ;
-    o = value;
     scr2.textContent = '';
     point.disabled = false ;
 };
 //shows result in main screen
 function submit(){
-   scr2.textContent = scr1.textContent;
-   scr1.textContent = '';
+    if(scr2.textContent == ''){
+        scr2.textContent = scr1.textContent ; 
+    }else{
+   nr2 = scr2.textContent;
+   nr2 = parseFloat(nr2);
+   operate(nr1,o,nr2);
+   scr2.textContent = nr1 ;
+    }
+   scr1.textContent = 0 ;
    scr2.style.color = 'green';
    point.disabled = false ;
 };
@@ -115,14 +118,18 @@ function backspace(){
 
 //push effect
 addEventListener('click',(element)=>{
-    console.log(element);
-    let btnId = element.path[0].id;
+    let btnId = element.composedPath()[0].id;
+    let btnn = document.getElementById(btnId);
     if(btnId == 'point'){
         point.disabled = true ;
-    }
-    let btnn = document.getElementById(btnId);
+    }else if(btnId == 'backspaceIcon'){
+        btnn.style.fontSize = '35px';
+        setTimeout(()=>{
+            btnn.style.fontSize = '40px';
+        },300);
+    }else{    
     btnn.style.boxShadow = "0px 0px 0px black";
     setTimeout(()=>{
         btnn.style.boxShadow = "10px 10px 10px black";
-    },500)
-})
+    },500);}
+});

@@ -44,6 +44,8 @@ html{
    width: 280px;
    display: flex;
    justify-content: space-around;
+   border: 0px solid black;
+   
 }
 
 .number{
@@ -171,8 +173,7 @@ html{
     width: 296px;
     border: 0px solid black;
     background-color: rgb(177, 177, 177);
-    overflow: hidden;
-    text-overflow: ellipsis;
+    
 }
 
 #cls{
