@@ -109,11 +109,7 @@ function submit(){
 function backspace(){
     let backspaced = Math.floor(scr2.textContent/10);
     scr2.textContent = backspaced; 
-    nr2 = scr2.textContent ;
-    nr2 = parseFloat(nr2);
-    operate(nr1,o,nr2);
-    o = '';
-    scr1.textContent = Math.round(s1*100000)/100000 ;
+    
 }
 
 //push effect
